@@ -13,79 +13,59 @@
 8. Display the employee table, salary_log table.
 
 ### Program:
-```
-CREATE TABLE employed(
-  empid NUMBER,
-  empname VARCHAR2(10),
-  dept VARCHAR2(10),
-  salary NUMBER
-);
 
-CREATE TABLE sal_log (
-  log_id NUMBER GENERATED ALWAYS AS IDENTITY,
-  empid NUMBER,
-  empname VARCHAR2(10),
-  old_salary NUMBER,
-  new_salary NUMBER,
-  update_date DATE
-);
--- Insert the values in the employee table
-insert into employedd values(1,'Shakthi','IT',1000000);
-insert into employedd values(2,'Suji','SALES',500000)
-```
 
 ### Create employee table
-```CREATE TABLE employed(
+```sql
+CREATE TABLE em(
   empid NUMBER,
-  empname VARCHAR2(10),
-  dept VARCHAR2(10),
-  salary NUMBER
-);
+  empname VARCHAR(10),
+  dept VARCHAR(10),
+  salary NUMBER);
 ```
 
 ### Create salary_log table
-```
-CREATE TABLE sal_log (
+```sql
+CREATE TABLE s_log (
   log_id NUMBER GENERATED ALWAYS AS IDENTITY,
   empid NUMBER,
   empname VARCHAR2(10),
   old_salary NUMBER,
   new_salary NUMBER,
-  update_date DATE
-);
+  update_date DATE);
 ```
-
+### Value insertion in Employee Table
+```sql
+-- Insert the values in the employee table
+  insert into em values(001,'Harry Kane','Programmer',78000);
+  insert into em values(002,'Chuchan','IT Analyst',45000);
+  insert into em values(003,'Sabarish','Developer',89000);
+```
 
 ### PLSQL Trigger code
-```
--- Create the trigger
-CREATE OR REPLACE TRIGGER log_sal_update
-BEFORE UPDATE ON employed
+```sql
+set serveroutput on
+CREATE OR REPLACE TRIGGER log_salary0_update
+BEFORE UPDATE ON em
 FOR EACH ROW
+DECLARE
+old_salary NUMBER;
+new_salary NUMBER;
 BEGIN
-  IF :OLD.salary != :NEW.salary THEN
-    INSERT INTO sal_log (empid, empname, old_salary, new_salary, update_date)
-    VALUES (:OLD.empid, :OLD.empname, :OLD.salary, :NEW.salary, SYSDATE);
-  END IF;
+old_salary := :OLD.salary;
+new_salary := :NEW.salary;
+IF old_salary <> new_salary THEN
+INSERT INTO s_log(empid, empname, old_salary, new_salary, update_date)
+VALUES(:OLD.empid, :OLD.empname, old_salary, new_salary, SYSDATE);
+END IF;
 END;
 /
--- Insert the values in the employee table
-insert into employed values(1,'Shakthi','IT',1000000);
-insert into employed values(2,'Suji','SALES',500000);
-
--- Update the salary of an employee
-UPDATE employedd
-SET salary = 60000
-WHERE empid = 1;
--- Display the employee table
-SELECT * FROM employedd;
-
--- Display the salary_logg table
-SELECT * FROM sal_logg;
 ```
+![DBMS EX-06 TRIGGER CODE](https://github.com/SudharsanamRK/Ex-No-5-Creating-Triggers-using-PL-SQL/assets/115523484/755f9dfa-3c55-46cf-aaee-25c161af8e5b)
+
 
 ### Output:
-![image](https://github.com/SudharsanamRK/Ex-No-5-Creating-Triggers-using-PL-SQL/assets/115523484/636beb4f-e8b2-4404-91fa-a3e38b11c3aa)
+![DBMS EX-6 END OUTPUT](https://github.com/SudharsanamRK/Ex-No-5-Creating-Triggers-using-PL-SQL/assets/115523484/46c4039a-bfc1-4ce1-a5d3-f2688635c367)
 
 
 ### Result:
