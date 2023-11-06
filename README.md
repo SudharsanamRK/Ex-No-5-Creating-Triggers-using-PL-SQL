@@ -1,7 +1,7 @@
 # Ex. No: 5 Creating Triggers using PL/SQL
-## DATE:
-### AIM:
-To create a Trigger using PL/SQL.
+## DATE: 01/09/2023
+
+### AIM: To create a Trigger using PL/SQL.
 
 ### Steps:
 1. Create employee table with following attributes (empid NUMBER, empname VARCHAR(10), dept VARCHAR(10),salary NUMBER);
@@ -14,9 +14,7 @@ To create a Trigger using PL/SQL.
 8. Display the employee table, salary_log table.
 
 ### Program:
-
-
-### Create employee table
+## Create employee table
 ```sql
 CREATE TABLE em(
   empid NUMBER,
@@ -24,7 +22,6 @@ CREATE TABLE em(
   dept VARCHAR(10),
   salary NUMBER);
 ```
-
 ### Create salary_log table
 ```sql
 CREATE TABLE s_log (
@@ -42,7 +39,6 @@ CREATE TABLE s_log (
   insert into em values(002,'Chuchan','IT Analyst',45000);
   insert into em values(003,'Sabarish','Developer',89000);
 ```
-
 ### PLSQL Trigger code
 ```sql
 set serveroutput on
@@ -64,10 +60,8 @@ END;
 ```
 ![DBMS EX-06 TRIGGER CODE](https://github.com/SudharsanamRK/Ex-No-5-Creating-Triggers-using-PL-SQL/assets/115523484/755f9dfa-3c55-46cf-aaee-25c161af8e5b)
 
-
 ### Output:
 ![DBMS EX-6 END OUTPUT](https://github.com/SudharsanamRK/Ex-No-5-Creating-Triggers-using-PL-SQL/assets/115523484/46c4039a-bfc1-4ce1-a5d3-f2688635c367)
 
-
 ### Result:
-Thus , the output has been successfully verified.
+Thus to create a Trigger using PL/SQL has been successfully verified.
